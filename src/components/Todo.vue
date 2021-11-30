@@ -4,26 +4,21 @@
             <Todoitem 
             v-for="todo in todos" 
             :key="todo.title"
-            :todo="todo.title"
+            :todo="todo"
             v-on:todo-item-changed="Changed"
             />
-            {{ this.todo.title }}
-            </li>
         </ul>
     </div>
 </template>
 
 <script>
-import Todoitem from '/Todoitem.vue'
+import Todoitem from './item.vue'
 export default {
     props:['todos'],
-    components: Todoitem,
+    components: {Todoitem},
     methods: {
         Changed(e){
-            this.$emit('todos.changed',{
-                original:this.todo.title,
-                new:this.text
-            })
+            this.$emit('todos.changed',e)
         }
     },
 
